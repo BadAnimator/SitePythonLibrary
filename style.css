@@ -1,0 +1,770 @@
+/* Базовые стили и CSS переменные */
+:root {
+    /* Светлая тема по умолчанию */
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f3f5;
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-tertiary: #6c757d;
+    --accent-primary: #4361ee;
+    --accent-secondary: #3a0ca3;
+    --accent-success: #28a745;
+    --border-color: #dee2e6;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --card-radius: 10px;
+    --modal-radius: 12px;
+    --transition: all 0.3s ease;
+    
+    /* Размеры шрифта (базовый) */
+    --font-size-base: 16px;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.125rem;
+    --font-size-xlarge: 1.25rem;
+    --font-size-xxlarge: 1.5rem;
+    
+    /* Кастомные скролл-бары для светлой темы */
+    --scrollbar-track: #f1f1f1;
+    --scrollbar-thumb: #c1c1c1;
+    --scrollbar-thumb-hover: #a8a8a8;
+    
+    /* Цвета для подсветки синтаксиса (светлая тема) */
+    --code-bg: #f6f8fa;
+    --code-border: #e1e4e8;
+    --code-text: #24292e;
+    --code-comment: #6a737d;
+    --code-keyword: #d73a49;
+    --code-string: #032f62;
+    --code-function: #6f42c1;
+    --code-number: #005cc5;
+    --code-operator: #d73a49;
+}
+
+/* Темная тема */
+[data-theme="dark"] {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2d2d2d;
+    --text-primary: #e9ecef;
+    --text-secondary: #ced4da;
+    --text-tertiary: #adb5bd;
+    --accent-primary: #4cc9f0;
+    --accent-secondary: #4361ee;
+    --border-color: #495057;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
+    
+    /* Кастомные скролл-бары для темной темы */
+    --scrollbar-track: #2d2d2d;
+    --scrollbar-thumb: #555555;
+    --scrollbar-thumb-hover: #6b6b6b;
+    
+    /* Цвета для подсветки синтаксиса (темная тема) */
+    --code-bg: #0d1117;
+    --code-border: #30363d;
+    --code-text: #c9d1d9;
+    --code-comment: #8b949e;
+    --code-keyword: #ff7b72;
+    --code-string: #a5d6ff;
+    --code-function: #d2a8ff;
+    --code-number: #79c0ff;
+    --code-operator: #ff7b72;
+}
+
+/* Кастомные скролл-бары для всего сайта */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 5px;
+    border: 2px solid var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
+}
+
+/* Кастомные скролл-бары для модального окна */
+.modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--bg-tertiary);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+/* Кастомные скролл-бары для предпросмотра кода в карточках */
+.card-preview pre {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--bg-tertiary);
+}
+
+.card-preview pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.card-preview pre::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+}
+
+.card-preview pre::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 3px;
+}
+
+/* Кастомные скролл-бары для основного контента */
+.cards-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.cards-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    transition: var(--transition);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка - УМЕНЬШЕНА */
+header {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.8rem 0 0.5rem 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-btn {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: var(--transition);
+    min-width: 40px;
+    height: 40px;
+}
+
+.control-btn:hover {
+    background-color: var(--accent-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.font-controls {
+    display: flex;
+    gap: 5px;
+}
+
+/* Фильтры и поиск */
+.filters {
+    margin-top: 0.5rem;
+}
+
+.search-box {
+    position: relative;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0.8rem;
+}
+
+.tag-filter {
+    padding: 3px 7px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.tag-filter:hover, .tag-filter.active {
+    background-color: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+/* Контейнер карточек */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 1.5rem 0 3rem 0;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Карточки */
+.card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--card-radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-primary);
+}
+
+.card-tag {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-color: var(--accent-secondary);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 6px;
+    font-size: 0.5rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.card-header {
+    margin-bottom: 12px;
+    padding-right: 70px;
+}
+
+.card-title {
+    font-size: 1.0rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.card-short-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.card-preview {
+    background-color: var(--code-bg);
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    overflow: hidden;
+    max-height: 100px;
+    position: relative;
+    border: 1px solid var(--code-border);
+}
+
+.card-preview:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: linear-gradient(to bottom, transparent, var(--code-bg));
+    pointer-events: none;
+}
+
+.card-preview code {
+    color: var(--code-text);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Стили для подсветки синтаксиса в карточках */
+.card-preview .token.comment,
+.card-preview .token.prolog,
+.card-preview .token.doctype,
+.card-preview .token.cdata {
+    color: var(--code-comment);
+}
+
+.card-preview .token.punctuation {
+    color: var(--code-text);
+}
+
+.card-preview .token.keyword,
+.card-preview .token.operator {
+    color: var(--code-keyword);
+}
+
+.card-preview .token.string,
+.card-preview .token.char {
+    color: var(--code-string);
+}
+
+.card-preview .token.function {
+    color: var(--code-function);
+}
+
+.card-preview .token.number {
+    color: var(--code-number);
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: var(--modal-radius);
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-hover);
+    animation: modalFadeIn 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-secondary);
+    z-index: 10;
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-right: 15px;
+    line-height: 1.2;
+}
+
+.modal-tag {
+    background-color: var(--accent-primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: var(--transition);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.close-btn:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 22px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+.copy-btn {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.copy-btn:hover {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+/* Блок с кодом в модальном окне */
+.code-block {
+    background-color: var(--code-bg) !important;
+    border-radius: 8px;
+    padding: 20px !important;
+    overflow-x: auto;
+    margin: 0;
+    border: 1px solid var(--code-border);
+}
+
+.code-block code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--code-text);
+    background: transparent !important;
+}
+
+/* Кастомные стили для подсветки синтаксиса в модальном окне */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+    color: var(--code-comment) !important;
+}
+
+.code-block .token.punctuation {
+    color: var(--code-text) !important;
+}
+
+.code-block .token.keyword,
+.code-block .token.operator {
+    color: var(--code-keyword) !important;
+}
+
+.code-block .token.string,
+.code-block .token.char {
+    color: var(--code-string) !important;
+}
+
+.code-block .token.function {
+    color: var(--code-function) !important;
+}
+
+.code-block .token.number {
+    color: var(--code-number) !important;
+}
+
+.code-block .token.boolean {
+    color: var(--code-keyword) !important;
+}
+
+.code-block .token.selector,
+.code-block .token.attr-name,
+.code-block .token.property {
+    color: var(--code-function) !important;
+}
+
+.code-block .token.attr-value {
+    color: var(--code-string) !important;
+}
+
+.description-section {
+    margin-top: 22px;
+}
+
+.description-section h3 {
+    margin-bottom: 12px;
+}
+
+.description-section p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background-color: var(--bg-tertiary);
+    padding: 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Индикатор загрузки */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--text-tertiary);
+}
+
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 3px solid var(--accent-primary);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Подвал */
+footer {
+    background-color: var(--bg-secondary);
+    padding: 15px 0;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-info {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    color: var(--text-tertiary);
+}
+
+/* Нет результатов */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-tertiary);
+}
+
+.no-results i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.no-results h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .controls {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        max-height: 95vh;
+    }
+    
+    .modal-header {
+        padding: 15px 18px;
+    }
+    
+    .modal-body {
+        padding: 18px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .tag-filters {
+        overflow-x: auto;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .tag-filter {
+        flex-shrink: 0;
+    }
+}

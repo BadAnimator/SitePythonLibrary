@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Code Library</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем обе темы Prism для светлой и темной темы -->
+    <link id="prism-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link id="prism-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" disabled>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/x-icon" href="https://images.icon-icons.com/3027/PNG/512/python_icon_188903.png">
+</head>
+<body>
+    <!-- Навигация и настройки -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <h1>
+                    <!-- <img src="https://www.clipartmax.com/png/middle/279-2791029_python-icon-python-logo.png" alt="Python" class="logo"> -->
+                    🐍 Python Code Library
+                </h1>
+                <div class="controls">
+                    <button id="themeToggle" class="control-btn" title="Сменить тему">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="font-controls">
+                        <button id="fontDecrease" class="control-btn" title="Уменьшить шрифт">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button id="fontReset" class="control-btn" title="Сбросить шрифт">
+                            <i class="fas fa-font"></i>
+                        </button>
+                        <button id="fontIncrease" class="control-btn" title="Увеличить шрифт">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Фильтры по тегам -->
+            <div class="filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Поиск по заголовку, описанию или тегу...">
+                </div>
+                <div class="tag-filters">
+                    <button class="tag-filter active" data-tag="all">Все</button>
+                    <!-- Теги будут добавлены через JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="cards-container" id="cardsContainer">
+            <!-- Карточки будут добавлены через JS -->
+        </div>
+        
+        <!-- Индикатор загрузки -->
+        <div id="loadingIndicator" class="loading">
+            <div class="spinner"></div>
+            <p>Загрузка карточек...</p>
+        </div>
+    </main>
+
+    <!-- Модальное окно для просмотра кода -->
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Заголовок</h2>
+                <span class="modal-tag" id="modalTag">Тег</span>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-code"></i> Код</h3>
+                        <button class="copy-btn" id="copyCodeBtn" title="Копировать код">
+                            <i class="far fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <pre class="code-block"><code id="modalCode" class="language-python"></code></pre>
+                </div>
+                <div class="description-section">
+                    <h3><i class="fas fa-align-left"></i> Описание</h3>
+                    <p id="modalDescription">Описание будет здесь...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>Python Code Library &copy; 2023 | Всего карточек: <span id="cardsCount">0</span></p>
+            <p class="footer-info">База знаний по Python</p>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://BadAnimator.github.io/SitePythonLibrary/script.js"></script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
